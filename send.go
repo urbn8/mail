@@ -64,6 +64,7 @@ func send(s Sender, m *Message) error {
 func (m *Message) getFrom() (string, error) {
 	from := m.header["Return-Path"]
 	if len(from) != 0 {
+		delete(m.header, "Return-Path")
 		return parseAddress(from[0])
 	}
 
